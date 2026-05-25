@@ -43,8 +43,14 @@ class CreateChainAlongGeo(QtWidgets.QDialog):
         self.build_layouts()
 
     def build_widgets(self):
+        # Widget Description
+        self.title_description_label = QtWidgets.QLabel("Description")
+        self.title_description_label.setObjectName("sectionTitle")
+        self.description_label = QtWidgets.QLabel("This tool creates a chain along the loaded geometries center-lines.")
+
         # Geo Selection
-        self.selection_title = QtWidgets.QLabel("Selection")
+        self.selection_title = QtWidgets.QLabel("1. Selection")
+        self.selection_title.setObjectName("sectionTitle")
         self.selection_info_label = QtWidgets.QLabel("No geo loaded")
 
         self.load_selection_btn = QtWidgets.QPushButton("Load Selected Geo")
@@ -59,7 +65,8 @@ class CreateChainAlongGeo(QtWidgets.QDialog):
         self.clear_list_btn.clicked.connect(self.selection_list.clear)
 
         # Chain Settings
-        self.chain_settings_title = QtWidgets.QLabel("Joint Settings")
+        self.chain_settings_title = QtWidgets.QLabel("2. Joint Settings")
+        self.chain_settings_title.setObjectName("sectionTitle")
         self.chain_count_label = QtWidgets.QLabel("Joint Count")
 
         self.chain_count_spinbox = QtWidgets.QSpinBox()
@@ -70,7 +77,8 @@ class CreateChainAlongGeo(QtWidgets.QDialog):
         self.reverse_direction_checkbox = QtWidgets.QCheckBox("Reverse Direction")
 
         # Snap Settings
-        self.snap_settings_title = QtWidgets.QLabel("Snap Settings")
+        self.snap_settings_title = QtWidgets.QLabel("3. Snap Settings")
+        self.snap_settings_title.setObjectName("sectionTitle")
         self.snap_start_checkbox = QtWidgets.QCheckBox("Snap First Joint To Start")
         self.snap_start_checkbox.setChecked(True)
 
@@ -78,7 +86,8 @@ class CreateChainAlongGeo(QtWidgets.QDialog):
         self.snap_end_checkbox.setChecked(True)
 
         # Misc Settings
-        self.misc_settings_title = QtWidgets.QLabel("Misc Settings")
+        self.misc_settings_title = QtWidgets.QLabel("4. Misc Settings")
+        self.misc_settings_title.setObjectName("sectionTitle")
 
         self.create_curve_checkbox = QtWidgets.QCheckBox("Create Helper Curve")
 
@@ -95,13 +104,20 @@ class CreateChainAlongGeo(QtWidgets.QDialog):
         self.close_btn.clicked.connect(self.close)
 
     def build_layouts(self):
+        # Description Group
+        description_group = QtWidgets.QGroupBox()
+        description_layout = QtWidgets.QVBoxLayout(description_group)
+
+        description_layout.addWidget(self.title_description_label)
+        description_layout.addWidget(self.description_label)
+
         # Selection Group
         selection_group = QtWidgets.QGroupBox()
         selection_layout = QtWidgets.QVBoxLayout(selection_group)
 
         selection_buttons = QtWidgets.QHBoxLayout()
         selection_buttons.addWidget(self.load_selection_btn, 3)
-        selection_buttons.addWidget(self.clear_list_btn, 1  )
+        selection_buttons.addWidget(self.clear_list_btn, 1)
 
         selection_layout.addWidget(self.selection_title)
         selection_layout.addWidget(self.selection_info_label)
@@ -142,11 +158,12 @@ class CreateChainAlongGeo(QtWidgets.QDialog):
         buttons_layout.addWidget(self.close_btn)
 
         # Add To Main Layout
+        self._master_layout.addWidget(description_group)
         self._master_layout.addWidget(selection_group)
         self._master_layout.addWidget(joint_group)
         self._master_layout.addWidget(snap_group)
         self._master_layout.addWidget(misc_group)
-        self._master_layout.addStretch()
+        # self._master_layout.addStretch()
         self._master_layout.addLayout(buttons_layout)
 
     # Logic
