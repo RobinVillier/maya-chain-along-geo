@@ -81,17 +81,6 @@ QGroupBox {
 }
 
 
-QGroupBox::title {
-    subcontrol-origin: margin;
-    left: 10px;
-
-    padding-left: 4px;
-    padding-right: 4px;
-
-    color: #F0F0F0;
-}
-
-
 /* =========================================================
    PUSH BUTTONS
    ========================================================= */
@@ -103,8 +92,6 @@ QPushButton {
     border-radius: 4px;
 
     padding: 6px 10px;
-
-    min-height: 22px;
 }
 
 
@@ -230,7 +217,7 @@ QDoubleSpinBox {
     border-radius: 4px;
 
     padding: 4px;
-    min-height: 20px;
+    min-height: 15px;
 }
 
 
@@ -278,7 +265,7 @@ QComboBox {
     border-radius: 4px;
 
     padding: 4px 8px;
-    min-height: 20px;
+    min-height: 15px;
 }
 
 
